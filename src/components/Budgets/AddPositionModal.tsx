@@ -88,18 +88,19 @@ export const AddPositionModal: React.FC<AddPositionModalProps> = ({
 
   // Log para debug - ver quantas cidades foram carregadas
   React.useEffect(() => {
-    console.log('🏙️ Cidades carregadas da tabela budget_iss_rates:', {
+    console.log('🏙️ Debug - Cidades carregadas:', {
       total: cities.length,
+      citiesLoading,
       cities: cities.map(c => ({ 
         id: c.id, 
         nome: c.city_name, 
-        iss: c.iss_rate,
+        iss: `${c.iss_rate}%`,
         ativa: c.is_active 
       })),
-      tabela: 'budget_iss_rates',
-      filtro: 'is_active = true'
+      queryStatus: citiesLoading ? 'Carregando...' : 'Concluído',
+      errorInfo: cities.length === 0 ? 'Nenhuma cidade encontrada - verificar migração' : 'OK'
     });
-  }, [cities]);
+  }, [cities, citiesLoading]);
 
   // Hook para inserir novo cargo
   const { insert: insertJobRole } = useSupabaseInsert('budget_job_roles' as any);

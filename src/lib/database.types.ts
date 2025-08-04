@@ -567,5 +567,28 @@ export interface Database {
     }
     target_type: "points" | "sales"
     challenge_status: "active" | "completed" | "expired"
+    budget_iss_rates: {
+      Row: {
+        id: string
+        city_name: string
+        iss_rate: number
+        is_active: boolean
+        created_at: string
+      }
+      Insert: {
+        id?: string
+        city_name: string
+        iss_rate: number
+        is_active?: boolean
+        created_at?: string
+      }
+      Update: {
+        id?: string
+        city_name?: string
+        iss_rate?: number
+        is_active?: boolean
+        created_at?: string
+      }
+    }
   }
 }
