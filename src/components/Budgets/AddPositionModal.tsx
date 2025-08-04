@@ -404,8 +404,8 @@ export const AddPositionModal: React.FC<AddPositionModalProps> = ({
               {!citiesLoading && (
                 <p className="text-xs text-gray-500 mt-1">
                   {cities.length > 0 
-                    ? `✅ ${cities.length} cidade${cities.length > 1 ? 's ativas' : ' ativa'} da tabela budget_iss_rates`
-                    : '❌ Nenhuma cidade encontrada - verifique se a migração foi aplicada'
+                    ? `✅ ${cities.length} cidade${cities.length > 1 ? 's ativas' : ' ativa'} da tabela budget_cities`
+                    : '❌ Nenhuma cidade encontrada - execute a migration create_budget_cities_table.sql'
                   }
                 </p>
               )}

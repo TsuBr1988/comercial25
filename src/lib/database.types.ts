@@ -478,7 +478,7 @@ export interface Database {
           propostas_apresentadas?: number
           contrato_assinado?: number
           mql?: number
-        turn?: string | null
+          visitas_agendadas?: number
           total_points?: number
           created_at?: string
           updated_at?: string
@@ -491,64 +491,87 @@ export interface Database {
           pontos_educacao?: number
           propostas_apresentadas?: number
           contrato_assinado?: number
-        turn?: string | null
+          mql?: number
           visitas_agendadas?: number
           total_points?: number
           created_at?: string
           updated_at?: string
         }
       }
-    }
-    budget_cities_iss: {
-      Row: {
-        id: string
-        city_name: string
-        iss_percent: number
-        is_active: boolean | null
-        created_at: string | null
+      budget_cities: {
+        Row: {
+          id: string
+          name: string
+          iss_rate: number
+          is_active: boolean
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          iss_rate: number
+          is_active?: boolean
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          iss_rate?: number
+          is_active?: boolean
+          created_at?: string
+        }
       }
-      Insert: {
-        id?: string
-        city_name: string
-        iss_percent: number
-        is_active?: boolean | null
-        created_at?: string | null
+      budget_cities_iss: {
+        Row: {
+          id: string
+          city_name: string
+          iss_percent: number
+          is_active: boolean | null
+          created_at: string | null
+        }
+        Insert: {
+          id?: string
+          city_name: string
+          iss_percent: number
+          is_active?: boolean | null
+          created_at?: string | null
+        }
+        Update: {
+          id?: string
+          city_name?: string
+          iss_percent?: number
+          is_active?: boolean | null
+          created_at?: string | null
+        }
       }
-      Update: {
-        id?: string
-        city_name?: string
-        iss_percent?: number
-        is_active?: boolean | null
-        created_at?: string | null
-      }
-    }
-    budget_uniforms: {
-      Row: {
-        id: string
-        item_name: string
-        life_time_months: number
-        qty_per_collaborator: number
-        unit_value: number
-        is_active: boolean | null
-        created_at: string | null
-      }
-      Insert: {
-        id?: string
-        item_name: string
-        life_time_months: number
-        qty_per_collaborator: number
-        unit_value: number
-        is_active?: boolean | null
-        created_at?: string | null
-      }
-      Update: {
-        id?: string
-        item_name?: string
-        life_time_months?: number
-        qty_per_collaborator?: number
-        unit_value?: number
-        is_active?: boolean | null
-        created_at?: string | null
+      budget_uniforms: {
+        Row: {
+          id: string
+          item_name: string
+          life_time_months: number
+          qty_per_collaborator: number
+          unit_value: number
+          is_active: boolean | null
+          created_at: string | null
+        }
+        Insert: {
+          id?: string
+          item_name: string
+          life_time_months: number
+          qty_per_collaborator: number
+          unit_value: number
+          is_active?: boolean | null
+          created_at?: string | null
+        }
+        Update: {
+          id?: string
+          item_name?: string
+          life_time_months?: number
+          qty_per_collaborator?: number
+          unit_value?: number
+          is_active?: boolean | null
+          created_at?: string | null
+        }
       }
     }
     Views: {
@@ -558,37 +581,13 @@ export interface Database {
       [_ in never]: never
     }
     Enums: {
-        turn: string | null
       employee_role: 'SDR' | 'Closer' | 'Admin'
       proposal_status: 'Proposta' | 'Negociação' | 'Fechado' | 'Perdido'
+      target_type: "points" | "sales"
+      challenge_status: "active" | "completed" | "expired"
     }
     CompositeTypes: {
       [_ in never]: never
-    }
-    target_type: "points" | "sales"
-    challenge_status: "active" | "completed" | "expired"
-    budget_iss_rates: {
-      Row: {
-        id: string
-        city_name: string
-        iss_rate: number
-        is_active: boolean
-        created_at: string
-      }
-      Insert: {
-        id?: string
-        city_name: string
-        iss_rate: number
-        is_active?: boolean
-        created_at?: string
-      }
-      Update: {
-        id?: string
-        city_name?: string
-        iss_rate?: number
-        is_active?: boolean
-        created_at?: string
-      }
     }
   }
 }
