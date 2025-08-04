@@ -80,10 +80,10 @@ export const AddPositionModal: React.FC<AddPositionModalProps> = ({
   });
 
   // Buscar TODAS as cidades da tabela budget_iss_rates
-  const { data: cities = [], loading: citiesLoading } = useSupabaseQuery('budget_iss_rates' as any, {
-    select: 'id, city_name, iss_rate, is_active',
+  const { data: cities = [], loading: citiesLoading } = useSupabaseQuery('budget_cities' as any, {
+    select: 'id, name, iss_rate',
     filter: { is_active: true },
-    orderBy: { column: 'city_name', ascending: true }
+    orderBy: { column: 'name', ascending: true }
   });
 
   // Log para debug - ver quantas cidades foram carregadas
@@ -93,9 +93,9 @@ export const AddPositionModal: React.FC<AddPositionModalProps> = ({
       citiesLoading,
       cities: cities.map(c => ({ 
         id: c.id, 
-        nome: c.city_name, 
+        nome: c.name, 
         iss: `${c.iss_rate}%`,
-        ativa: c.is_active 
+        ativa: true
       })),
       queryStatus: citiesLoading ? 'Carregando...' : 'Concluído',
       errorInfo: cities.length === 0 ? 'Nenhuma cidade encontrada - verificar migração' : 'OK'
@@ -394,7 +394,7 @@ export const AddPositionModal: React.FC<AddPositionModalProps> = ({
                 <option value="">Selecione uma cidade</option>
                 {cities.length > 0 ? cities.map((city) => (
                   <option key={city.id} value={city.id}>
-                    {city.city_name} ({city.iss_rate || 0}% ISS)
+                    {city.name} ({city.iss_rate || 0}% ISS)
                   </option>
                 )) : null}
               </select>
